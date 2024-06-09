@@ -16,6 +16,12 @@ class TodoApp extends StatelessWidget {
       //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       //   useMaterial3: true,
       // ),
+      theme: ThemeData(
+        primarySwatch: Colors.lightBlue,
+        appBarTheme: AppBarTheme(
+          color: Color(0xFF027CFF),
+        )
+      ),
       home: const HomepageScreen(),
     );
   }
