@@ -12,6 +12,25 @@ class HomepageScreen extends StatefulWidget {
 class _HomepageScreenState extends State<HomepageScreen> {
 
   List ToDoList=[];
+  String item = "";
+
+  MyInputOnChange(content){
+    setState(() {
+      item=content;
+    });
+  }
+
+  AddItem(){
+    setState(() {
+      ToDoList.add({"item":item});
+    });
+  }
+
+  RemoveItem(index){
+    setState(() {
+      ToDoList.removeAt(index);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +46,15 @@ class _HomepageScreenState extends State<HomepageScreen> {
             child: Row(
               children: [
                 Expanded(flex:70, child: Padding(
-                  padding: const EdgeInsets.only(right:5.0, left: 5.0),
-                  child: TextFormField(decoration: AppInputDecoration("To Do"),),
+                  padding: const EdgeInsets.only(right: 5.0, left: 10.0),
+                  child: TextFormField(onChanged: (content){MyInputOnChange (content);},decoration: AppInputDecoration("To Do"),),
                 )),
                 Expanded(
                   flex:20,
                   child: Padding(
-                    padding: const EdgeInsets.only(right:5.0, left: 5.0),
+                    padding: const EdgeInsets.only(right:10.0, left: 5.0),
                     child: ElevatedButton(
-                        onPressed: (){},
+                        onPressed: (){AddItem();},
                         child: Text('Add'),
                       style: AppButtonStyle(),
                     ),
@@ -47,14 +66,14 @@ class _HomepageScreenState extends State<HomepageScreen> {
           Expanded(
             flex: 90,
             child: ListView.builder(
-                itemCount: 5, //ToDoList.length
+                itemCount: ToDoList.length,
                 itemBuilder: (contex, index){
                   return Card(
                     child: SizeBox50(
                       Row(
                         children: [
-                          Expanded(flex: 80, child: Text("Items")),
-                          Expanded(flex: 20, child: TextButton(onPressed: (){}, child: Icon(Icons.delete),))
+                          Expanded(flex: 80, child: Text(ToDoList[index]['item'].toString())),
+                          Expanded(flex: 20, child: TextButton(onPressed: (){RemoveItem(ToDoList[index]);}, child: Icon(Icons.delete),))
                         ],
                       )
                     ),

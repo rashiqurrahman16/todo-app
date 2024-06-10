@@ -12,6 +12,7 @@ InputDecoration AppInputDecoration(label){
 ButtonStyle AppButtonStyle(){
   return ElevatedButton.styleFrom(
     padding: EdgeInsets.all(20),
+    foregroundColor: Colors.white,
     backgroundColor: Colors.blueAccent,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(10))
